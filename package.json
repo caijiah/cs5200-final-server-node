@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/caijiah/cs5200-final-server-node/issues"
   },
-  "homepage": "https://github.com/caijiah/cs5200-final-server-node#readme"
+  "homepage": "https://github.com/caijiah/cs5200-final-server-node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
