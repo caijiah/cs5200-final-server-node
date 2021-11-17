@@ -1,0 +1,19 @@
+{
+  "name": "cs5200-final-server-node",
+  "version": "1.0.0",
+  "description": "node server for cs5200 final project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caijiah/cs5200-final-server-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caijiah/cs5200-final-server-node/issues"
+  },
+  "homepage": "https://github.com/caijiah/cs5200-final-server-node#readme"
+}
