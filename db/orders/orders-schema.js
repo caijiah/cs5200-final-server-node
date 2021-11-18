@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const productsSchema = require('../products/products-schema')
 
 const ordersSchema = mongoose.Schema({
-    products: [{product: productsSchema, quality: Number}],
+    products: [{product: productsSchema, quantity: Number}],
     finishDate: Date,
     totalPrice: Number,
     customer: {
