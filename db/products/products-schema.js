@@ -14,7 +14,11 @@ const productsSchema = mongoose.Schema({
     inventory: Number,
     price: Number,
     created: {type: Date, default: Date.now},
-    updated: {type: Date, default: Date.now}
+    updated: {type: Date, default: Date.now},
+    supplier: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UsersModel'
+    }
 },{collection: 'products'})
 
 module.exports = productsSchema
