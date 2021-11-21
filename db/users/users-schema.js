@@ -39,7 +39,6 @@ usersSchema.virtuals('referrals',{
     ref: 'User',
     localField: '_id',
     foreignField: 'referredBy',
-
     justOne: false,
 },{ toJSON: { virtuals: true } });
 
