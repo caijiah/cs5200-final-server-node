@@ -35,11 +35,11 @@ const usersSchema = mongoose.Schema({
 // to get referrals information
 // to use it, Users.findOne().populate('referrals') to find all users
 // referred by this user.
-usersSchema.virtuals('referrals',{
+usersSchema.virtual('referrals', {
     ref: 'User',
     localField: '_id',
     foreignField: 'referredBy',
-    justOne: false,
+    justOne: true,
 },{ toJSON: { virtuals: true } });
 
 module.exports = usersSchema;
