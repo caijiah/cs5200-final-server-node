@@ -1,7 +1,15 @@
 const userDAO = require("../daos/users-dao")
+const roleDAO = require("../daos/roles-dao")
+
+const createUserByRoleHelper = (newUser) => {
+    return roleDAO.findRoleId(newUser.role)
+        .then((roleID) => {
+            newUser.role = roleID
+            return userDAO.createUser(newUser)
+        })
+}
 
 const createUserByRole = (newUser) => {
-    // const roleId = roleDAO.findRoleId(newUser.role);
     switch (newUser.role) {
         case 'CUSTOMER':
             const newCustomer = {
@@ -9,21 +17,22 @@ const createUserByRole = (newUser) => {
                 shoppingCart: {totalPrice: 0, items:[]},
                 // referredBy: newUser.referredBy
             }
-            return userDAO.createUser(newCustomer)
+            return createUserByRoleHelper(newCustomer)
         case 'SUPPLIER':
             const newSupplier = {
                 ...newUser,
+                referredBy: null,
                 companyName: newUser.companyName,
                 revenue: 0
             }
-            return userDAO.createUser(newSupplier)
+            return createUserByRoleHelper(newSupplier)
     }
 }
 
 const userNameCheckingRegister = (newUser) => {
     return userDAO.findUserByUserName(newUser.name)
         .then((existingUser) => {
-            if (existingUser.name === newUser.name) {
+            if (existingUser && existingUser.name === newUser.name) {
 
             } else {
                 return createUserByRole(newUser)
@@ -35,7 +44,7 @@ const register = (newUser) => {
     if (newUser.role === 'SUPPLIER') {
         return userDAO.findSupplierByCompanyName(newUser.companyName)
             .then((existingSupplier) => {
-                if (existingSupplier.companyName === newUser.companyName) {
+                if (existingSupplier && existingSupplier.companyName === newUser.companyName) {
 
                 } else {
                     return userNameCheckingRegister(newUser)

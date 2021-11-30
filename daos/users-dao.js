@@ -3,8 +3,6 @@ const mongoose = require('mongoose')
 const roleDAO = require('./roles-dao')
 
 const createUser = (newUser) => {
-    const roleId = roleDAO.findRoleId(newUser.role)
-    newUser.role = roleId
     return usersModel.create(newUser)
 }
 

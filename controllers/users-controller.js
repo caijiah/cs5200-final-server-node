@@ -3,6 +3,7 @@ const usersService = require("../services/users-service")
 module.exports = (app) => {
     const register = (req, res) => {
         const user = req.body
+        console.log(user)
         usersService.register((user))
             .then((actualUser) => {
                 if (actualUser) {
