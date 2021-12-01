@@ -6,6 +6,10 @@ const createUser = (newUser) => {
     return usersModel.create(newUser)
 }
 
+const updateUser = (newUser) => {
+
+}
+
 const findSupplierByCompanyName = (companyName) => {
     return usersModel.findOne({companyName})
 }

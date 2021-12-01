@@ -1,6 +1,7 @@
 const userDAO = require("../daos/users-dao")
 const roleDAO = require("../daos/roles-dao")
 
+// implement logic
 const createUserByRoleHelper = (newUser) => {
     return roleDAO.findRoleId(newUser.role)
         .then((roleID) => {

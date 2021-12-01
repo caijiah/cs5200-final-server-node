@@ -46,6 +46,7 @@ module.exports = (app) => {
         res.sendStatus(200)
     }
 
+    // @POSTMAPPING(url)
     app.post('/api/register', register)
     app.post('/api/login', login)
     app.post('/api/profile', profile)
