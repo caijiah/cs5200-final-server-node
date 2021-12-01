@@ -13,12 +13,28 @@ const createUserByRoleHelper = (newUser) => {
 const createUserByRole = (newUser) => {
     switch (newUser.role) {
         case 'CUSTOMER':
-            const newCustomer = {
-                ...newUser,
-                shoppingCart: {totalPrice: 0, items:[]},
-                // referredBy: newUser.referredBy
+            if (newUser.referredBy === '' || newUser.referredBy === undefined) {
+                const newCustomer = {
+                    ...newUser,
+                    shoppingCart: {totalPrice: 0, items:[]},
+                    referredBy: null
+                }
+                return createUserByRoleHelper(newCustomer)
+            } else {
+                return userDAO.findReferredId(newUser.referredBy)
+                    .then(referredId => {
+                        if (referredId) {
+                            const newCustomer = {
+                                ...newUser,
+                                shoppingCart: {totalPrice: 0, items:[]},
+                                referredBy: referredId
+                            }
+                            return createUserByRoleHelper(newCustomer)
+                        } else {
+
+                        }
+                    })
             }
-            return createUserByRoleHelper(newCustomer)
         case 'SUPPLIER':
             const newSupplier = {
                 ...newUser,
@@ -61,7 +77,11 @@ const login = (credentials) => {
 }
 
 const findUserById = (id) => {
-    return userDAO.findUserById(id).populate('role')
+    return userDAO.findUserById(id)
+        .populate('role')
+        .populate('referredBy', 'username')
+        .populate('referrals', {'username': 1, '_id': 0, 'referredBy': 0})
+
 }
 
 module.exports = {

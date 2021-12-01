@@ -34,6 +34,8 @@ module.exports = (app) => {
         if (currentUser) {
             const currentUerId = currentUser._id
             usersService.findUserById(currentUerId).then((profile)=> {
+                // const user = profile
+                // user.referrals = profile.referrals
                 res.send(profile)
             })
         } else {

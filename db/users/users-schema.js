@@ -30,16 +30,16 @@ const usersSchema = mongoose.Schema({
     // for suppliers
     companyName: String,
     revenue: Number,
-}, {collection: "users"});
+}, {collection: "users", toObject: {virtuals: true}, toJSON: {virtuals: true}});
 
 // to get referrals information
 // to use it, Users.findOne().populate('referrals') to find all users
 // referred by this user.
 usersSchema.virtual('referrals', {
-    ref: 'User',
+    ref: 'UsersModel',
     localField: '_id',
     foreignField: 'referredBy',
-    justOne: true,
-},{ toJSON: { virtuals: true } });
+    justOne: false
+});
 
 module.exports = usersSchema;
