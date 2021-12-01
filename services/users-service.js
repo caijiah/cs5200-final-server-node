@@ -84,9 +84,14 @@ const findUserById = (id) => {
 
 }
 
+const updateUserInfo = (userId, userInfo) => {
+    return userDAO.updateUserInfo(userId, userInfo)
+}
+
 module.exports = {
     createUserByRole,
     register,
     login,
-    findUserById
+    findUserById,
+    updateUserInfo
 }

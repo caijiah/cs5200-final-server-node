@@ -48,9 +48,26 @@ module.exports = (app) => {
         res.sendStatus(200)
     }
 
+    const updateUserInfo = (req, res) => {
+        const receive = req.body
+        const userId = receive.userId
+        const userInfo = receive.profileInfo
+
+        const currentUser = req.session["currentUser"]
+        if (currentUser._id === userId) {
+            usersService.updateUserInfo(userId, userInfo)
+                .then((updatedProfile)=> {
+                    res.json(updatedProfile)
+                })
+        } else {
+            res.sendStatus(403)
+        }
+    }
+
     // @POSTMAPPING(url)
     app.post('/api/register', register)
     app.post('/api/login', login)
     app.post('/api/profile', profile)
     app.post('/api/logout', logout)
+    app.put('/api/profile', updateUserInfo)
 }
