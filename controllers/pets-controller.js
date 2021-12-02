@@ -14,6 +14,7 @@ module.exports = (app) => {
 
     const updatePet = (req, res) => {
         const receive = req.body
+        console.log(receive)
         const petId = receive.petId
         const petUpdate = receive.petUpdate
         petsService.updatePet(petId, petUpdate)

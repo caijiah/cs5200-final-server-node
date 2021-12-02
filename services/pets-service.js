@@ -1,14 +1,16 @@
 const petsDAO = require('../daos/pets-dao')
 const mongoose = require("mongoose");
-const petsModel = require("../db/pets/pets-model");
+const {ObjectId} = require('mongodb')
 
 const findPetsByUserId = (userId) => {
-    const id = new mongoose.Types.ObjectId(userId)
+    const id = ObjectId(userId)
     return petsDAO.findPetsByUserId(id)
 }
 
 const updatePet = (petId, pet) => {
-    const pid = new mongoose.Types.ObjectId(petId)
+    console.log(petId)
+    const pid = ObjectId(petId)
+    console.log(pid)
     return petsDAO.updatePet(pid, pet);
 }
 

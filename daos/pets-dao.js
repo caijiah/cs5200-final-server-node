@@ -9,7 +9,8 @@ const createPet = (newPet) => {
 }
 
 const updatePet = (id, newPet) => petsModel.updateOne({_id: id},
-    {$set: newPet})
+    {$set: {name: newPet.name, animal: newPet.animal,
+            breed: newPet.breed, gender: newPet.gender, age: newPet.age}})
 
 const findAllPets = () => petsModel.find();
 const findPetsByName = (name) => petsModel.find({name: name})
