@@ -8,5 +8,5 @@ module.exports = (app) => {
             })
     }
 
-    app.get('/animals', findAllAnimalsType)
+    app.get('/api/animals', findAllAnimalsType)
 }
