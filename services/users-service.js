@@ -80,7 +80,7 @@ const findUserById = (id) => {
     return userDAO.findUserById(id)
         .populate('role')
         .populate('referredBy', 'username')
-        .populate('referrals', {'username': 1, '_id': 0, 'referredBy': 0})
+        .populate('referrals', {'created': 1,'username': 1, '_id': 0, 'referredBy': 0})
 
 }
 
