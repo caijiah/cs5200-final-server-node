@@ -14,3 +14,5 @@ const petsSchema = mongoose.Schema({
     gender: String,
     age: Number
 }, {collection: 'pets'})
+
+module.exports = petsSchema

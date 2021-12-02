@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const rolesSchema = mongoose.Schema({
-    role: String
+    role: {enum: ['CUSTOMER', 'SUPPLIER']}
 }, {collection: "roles"})
 
 module.exports = rolesSchema;
