@@ -9,11 +9,12 @@ const createPet = (newPet) => {
 }
 
 const updatePet = (id, newPet) => petsModel.updateOne({_id: id},
-    {$set: newPet})
+    {$set: {name: newPet.name, animal: newPet.animal,
+            breed: newPet.breed, gender: newPet.gender, age: newPet.age}})
 
 const findAllPets = () => petsModel.find();
 const findPetsByName = (name) => petsModel.find({name: name})
-const findPetsById = (id) => petsModel.findById(id)
+const findPetById = (id) => petsModel.findById(id)
 const findPetsByGender = (gender) => petsModel.findOne({gender})
 const findPetsByBreed = (breed) => petsModel.findOne({breed})
 const findPetsByAge = (age) => petsModel.findOne({age})
@@ -22,7 +23,7 @@ const deletePet = (id) => petsModel.deleteOne({_id: id})
 module.exports = {
     createPet,
     updatePet,
-    findPetsById,
+    findPetById,
     findPetsByName,
     findAllPets,
     findPetsByAge,
