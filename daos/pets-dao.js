@@ -1,6 +1,8 @@
 const petsModel = require('../db/pets/pets-model')
-const mongoose = require('mongoose')
-const animalDAO = require('./animals-dao')
+
+const findPetsByUserId = (userID) =>
+    petsModel.find({'owner': userID})
+        .populate('animal')
 
 const createPet = (newPet) => {
     return petsModel.create(newPet)
@@ -26,9 +28,6 @@ module.exports = {
     findPetsByAge,
     findPetsByBreed,
     findPetsByGender,
-    deletePet
+    deletePet,
+    findPetsByUserId
 }
-
-//findAllPets().then((response) => {console.log(response)});
-//findPetsByName('Charlie').then(pet => console.log(pet));
-//findPetsById("6195e17d87452309b267f4f3").then(pet => console.log(pet));

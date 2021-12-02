@@ -1,5 +1,11 @@
-const petDAO = require("../daos/pets-dao")
-const animalDAO = require("../daos/animals-dao")
+const petsDAO = require('../daos/pets-dao')
+const mongoose = require("mongoose");
 
+const findPetsByUserId = (userId) => {
+    const id = new mongoose.Types.ObjectId(userId)
+    return petsDAO.findPetsByUserId(id)
+}
 
-//QA: not sure what functions needed for pets???
+module.exports = {
+    findPetsByUserId
+}

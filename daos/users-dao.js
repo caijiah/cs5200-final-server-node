@@ -1,13 +1,12 @@
 const usersModel = require('../db/users/users-model')
-const mongoose = require('mongoose')
-const roleDAO = require('./roles-dao')
+const mongoose = require("mongoose");
 
 const createUser = (newUser) => {
     return usersModel.create(newUser)
 }
 
-const updateUser = (newUser) => {
-
+const findReferredId = (username) => {
+    return usersModel.findOne({username}).select('_id')
 }
 
 const findSupplierByCompanyName = (companyName) => {
@@ -19,11 +18,19 @@ const findUserByUserName = (username) => {
 }
 
 const findUserByCredentials = (username, password) => {
-    return usersModel.findOne({username, password}).populate('role')
+    return usersModel.findOne({username, password})
+        // .populate('role')
+        // .populate('referrals')
+        // .populate('referredBy', '_id', usersModel).exec()
 }
 
 const findUserById = (id) => {
-    return usersModel.findById(id)
+    return usersModel.findOne({_id: id})
+}
+
+const updateUserInfo = (userId, userInfo) => {
+    const id = new mongoose.Types.ObjectId(userId)
+    return usersModel.updateOne({_id: id}, {$set: userInfo})
 }
 
 module.exports = {
@@ -31,5 +38,7 @@ module.exports = {
     findSupplierByCompanyName,
     findUserByUserName,
     findUserByCredentials,
-    findUserById
+    findUserById,
+    findReferredId,
+    updateUserInfo
 }
