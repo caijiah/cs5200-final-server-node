@@ -38,7 +38,7 @@ const createUserByRole = (newUser) => {
         case 'SUPPLIER':
             const newSupplier = {
                 ...newUser,
-                referredBy: null,
+                referredBy: '',
                 companyName: newUser.companyName,
                 revenue: 0
             }

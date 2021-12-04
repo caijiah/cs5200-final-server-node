@@ -19,9 +19,6 @@ const findUserByUserName = (username) => {
 
 const findUserByCredentials = (username, password) => {
     return usersModel.findOne({username, password})
-        // .populate('role')
-        // .populate('referrals')
-        // .populate('referredBy', '_id', usersModel).exec()
 }
 
 const findUserById = (id) => {

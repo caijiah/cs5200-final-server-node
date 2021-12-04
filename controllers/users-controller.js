@@ -33,6 +33,7 @@ module.exports = (app) => {
         const currentUser = req.session["currentUser"]
         if (currentUser) {
             const currentUerId = currentUser._id
+            console.log(currentUerId)
             usersService.findUserById(currentUerId).then((profile)=> {
                 // const user = profile
                 // user.referrals = profile.referrals
