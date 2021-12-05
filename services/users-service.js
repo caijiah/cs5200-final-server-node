@@ -88,10 +88,25 @@ const updateUserInfo = (userId, userInfo) => {
     return userDAO.updateUserInfo(userId, userInfo)
 }
 
+const findCustomerShoppingCart = (userId) => {
+    return userDAO.findCustomerShoppingCart(userId)
+}
+
+const updateCustomerShoppingCart = (userId, shoppingCart) => {
+    return userDAO.updateCustomerShoppingCart(userId, shoppingCart)
+}
+
+const cleanCustomerShoppingCart = (userId) => {
+    return userDAO.cleanShoppingCart(userId)
+}
+
 module.exports = {
     createUserByRole,
     register,
     login,
     findUserById,
-    updateUserInfo
+    updateUserInfo,
+    findCustomerShoppingCart,
+    updateCustomerShoppingCart,
+    cleanCustomerShoppingCart
 }

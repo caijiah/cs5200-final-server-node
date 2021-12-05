@@ -11,7 +11,7 @@ const createProduct = (product) =>
 
 const findAllProducts = () =>
     productsDAO.findAllProducts()
-        .populate('supplier')
+        .populate('supplier', 'companyName')
         .populate('animal')
         .populate('category')
 

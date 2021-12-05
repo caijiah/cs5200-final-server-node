@@ -65,10 +65,34 @@ module.exports = (app) => {
         }
     }
 
+    const findCustomerShoppingCart = (req, res) => {
+        const userId = req.body.customerId
+        console.log(userId)
+        usersService.findCustomerShoppingCart(userId)
+            .then(shoppingCart => {
+                console.log(shoppingCart)
+                console.log(shoppingCart.items)
+                res.send(shoppingCart)
+            })
+    }
+
+    const updateCustomerShoppingCart = (req, res) => {
+        const receive = req.body
+        const userId = receive.customerId
+        const shoppingCart = receive.shoppingCart
+        console.log(receive)
+        usersService.updateCustomerShoppingCart(userId, shoppingCart)
+            .then(status => {
+                res.send(status)
+            })
+    }
+
     // @POSTMAPPING(url)
     app.post('/api/register', register)
     app.post('/api/login', login)
     app.post('/api/profile', profile)
     app.post('/api/logout', logout)
     app.put('/api/profile', updateUserInfo)
+    app.post('/api/customer/shoppingCart', findCustomerShoppingCart)
+    app.put('/api/customer/shoppingCart', updateCustomerShoppingCart)
 }

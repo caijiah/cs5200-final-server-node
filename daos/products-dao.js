@@ -25,6 +25,15 @@ const deleteProduct = (productId) =>
 const findProductById = (productId) =>
     productsModel.findById(productId)
 
+const findProductsByCategoryId = (categoryId) => {
+
+}
+
+const findProductsByAnimalType = (animalType) => {
+
+}
+
+
 module.exports = {
     findAllProducts,
     findProductsForSupplier,

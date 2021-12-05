@@ -30,6 +30,26 @@ const updateUserInfo = (userId, userInfo) => {
     return usersModel.updateOne({_id: id}, {$set: userInfo})
 }
 
+const findCustomerShoppingCart = (userId) => {
+    return usersModel.findById(userId).select('shoppingCart')
+        .populate('shoppingCart.items.product.supplier', 'companyName', 'UsersModel')
+        .populate('shoppingCart.items.product.category', '', 'CategoriesModel')
+        .populate('shoppingCart.items.product.animal', '', 'AnimalsModel')
+}
+
+const updateCustomerShoppingCart = (userId, shoppingCart) => {
+    return usersModel.updateOne({_id: userId},
+                                {$set: {shoppingCart: shoppingCart}})
+}
+
+const cleanShoppingCart = (userId) => {
+    return usersModel.updateOne({_id: userId},
+                                {$set: {shoppingCart: {totalPrice: 0, items: []}}})
+}
+
+const updateSupplierRevenue = (supplierId, revenue) =>
+    usersModel.updateOne({_id: supplierId}, {$inc: {revenue: revenue}})
+
 module.exports = {
     createUser,
     findSupplierByCompanyName,
@@ -37,5 +57,9 @@ module.exports = {
     findUserByCredentials,
     findUserById,
     findReferredId,
-    updateUserInfo
+    updateUserInfo,
+    findCustomerShoppingCart,
+    updateCustomerShoppingCart,
+    cleanShoppingCart,
+    updateSupplierRevenue
 }
