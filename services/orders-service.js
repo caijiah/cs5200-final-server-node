@@ -30,7 +30,7 @@ const finishCurrentOrder = (customerId) => {
                 let newOrder = {
                     products: shoppingCart.shoppingCart.items,
                     totalPrice: shoppingCart.shoppingCart.totalPrice,
-                    finishedDate: Date.now,
+                    created: new Date(),
                     customer: customerId
                 }
                 console.log(newOrder)

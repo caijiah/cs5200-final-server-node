@@ -3,8 +3,6 @@ const ordersService = require('../services/orders-service')
 module.exports = (app) => {
     const finishCurrentOrder = (req, res) => {
         const customerId = req.body.customerId
-        console.log("finish order")
-        console.log('finish order', req.body)
         ordersService.finishCurrentOrder(customerId)
             .then(status => {
                 res.send(status)
@@ -18,6 +16,7 @@ module.exports = (app) => {
         const customerId = req.body.customerId
         ordersService.findOrderByCustomerId(customerId)
             .then(orders => {
+                console.log(orders)
                 res.send(orders)
             })
     }
