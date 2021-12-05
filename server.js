@@ -35,6 +35,9 @@ app.use(bodyParser.urlencoded({
 require("./controllers/users-controller")(app)
 require("./controllers/pets-controller")(app)
 require("./controllers/animals-controller")(app)
+require("./controllers/categories-controller")(app)
+require("./controllers/products-controller")(app)
+require("./controllers/orders-controller")(app)
 
 const cors = require('cors');
 app.use(cors({credentials: true, origin: CLIENT_URL}));
