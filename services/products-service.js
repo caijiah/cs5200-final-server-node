@@ -27,11 +27,30 @@ const findProductById = (productId) =>
         .populate('animal')
         .populate('category').exec()
 
+
+const findAllBrands = () =>
+    productsDAO.findAllBrands()
+
+const findProductsByAnimalType = (animalType) =>
+    productsDAO.findProductsByAnimalType(animalType)
+        .populate('supplier', 'companyName')
+        .populate('animal')
+        .populate('category')
+
+const findProductsByCategoryId = (categoryId) =>
+    productsDAO.findProductsByCategoryId(categoryId)
+        .populate('supplier', 'companyName')
+        .populate('animal')
+        .populate('category')
+
 module.exports = {
     findProductsForSupplier,
     createProduct,
     findAllProducts,
     updateProduct,
     deleteProduct,
-    findProductById
+    findProductById,
+    findAllBrands,
+    findProductsByAnimalType,
+    findProductsByCategoryId
 }

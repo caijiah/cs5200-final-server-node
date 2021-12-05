@@ -8,9 +8,9 @@ const findPetsByUserId = (userId) => {
 }
 
 const updatePet = (petId, pet) => {
-    console.log(petId)
+    // console.log(petId)
     const pid = ObjectId(petId)
-    console.log(pid)
+    // console.log(pid)
     return petsDAO.updatePet(pid, pet);
 }
 

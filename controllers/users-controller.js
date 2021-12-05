@@ -3,7 +3,7 @@ const usersService = require("../services/users-service")
 module.exports = (app) => {
     const register = (req, res) => {
         const user = req.body
-        console.log(user)
+        // console.log(user)
         usersService.register((user))
             .then((actualUser) => {
                 if (actualUser) {
@@ -33,7 +33,7 @@ module.exports = (app) => {
         const currentUser = req.session["currentUser"]
         if (currentUser) {
             const currentUerId = currentUser._id
-            console.log(currentUerId)
+            // console.log(currentUerId)
             usersService.findUserById(currentUerId).then((profile)=> {
                 // const user = profile
                 // user.referrals = profile.referrals
@@ -67,11 +67,11 @@ module.exports = (app) => {
 
     const findCustomerShoppingCart = (req, res) => {
         const userId = req.body.customerId
-        console.log(userId)
+        // console.log(userId)
         usersService.findCustomerShoppingCart(userId)
             .then(shoppingCart => {
-                console.log(shoppingCart)
-                console.log(shoppingCart.items)
+                // console.log(shoppingCart)
+                // console.log(shoppingCart.items)
                 res.send(shoppingCart)
             })
     }
@@ -80,7 +80,7 @@ module.exports = (app) => {
         const receive = req.body
         const userId = receive.customerId
         const shoppingCart = receive.shoppingCart
-        console.log(receive)
+        // console.log(receive)
         usersService.updateCustomerShoppingCart(userId, shoppingCart)
             .then(status => {
                 res.send(status)

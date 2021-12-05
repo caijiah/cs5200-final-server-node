@@ -11,13 +11,13 @@ const finishCurrentOrder = (customerId) => {
         .then(shoppingCart => {
             let shoppingProductsParis = shoppingCart.shoppingCart.items
             shoppingProductsParis.forEach((pair) => {
-                console.log(pair)
+                // console.log(pair)
                 enoughQuantityCheck &= (pair.product.inventory - pair.quantity >= 0)
             })
 
             if (enoughQuantityCheck) {
                 shoppingProductsParis.forEach((pair) => {
-                    console.log(pair)
+                    // console.log(pair)
                     let product = pair.product
                     product.inventory -= pair.quantity
                     // reduce the product quantity
@@ -33,7 +33,7 @@ const finishCurrentOrder = (customerId) => {
                     created: new Date(),
                     customer: customerId
                 }
-                console.log(newOrder)
+                // console.log(newOrder)
                 return ordersDAO.createOrder(newOrder)
                     .then(() => userDAO.cleanShoppingCart(customerId))
             } else {

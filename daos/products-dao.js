@@ -25,12 +25,36 @@ const deleteProduct = (productId) =>
 const findProductById = (productId) =>
     productsModel.findById(productId)
 
-const findProductsByCategoryId = (categoryId) => {
+const findAllBrands = () =>
+    productsModel.aggregate([
+                                {
+                                    $group: {
+                                        _id: '$supplier'
+                                    }
+                                },
+                                {
+                                    '$lookup': {
+                                        'from': 'users',
+                                        'localField': '_id',
+                                        'foreignField': '_id',
+                                        'as': 'supplier'
+                                    }
+                                },
+                                {'$unwind': '$supplier'},
+                                { "$project": {'supplier._id' : 1,'supplier.companyName': 1}},
+                                {
+                                    $sort: {
+                                        'seller.companyName': 1
+                                    }
+                                },
+                                ])
 
+const findProductsByCategoryId = (categoryId) => {
+   return productsModel.find({category: categoryId})
 }
 
 const findProductsByAnimalType = (animalType) => {
-
+    return productsModel.find({animal: animalType})
 }
 
 
@@ -40,5 +64,8 @@ module.exports = {
     updateProduct,
     deleteProduct,
     createProduct,
-    findProductById
+    findProductById,
+    findAllBrands,
+    findProductsByAnimalType,
+    findProductsByCategoryId
 }
