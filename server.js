@@ -42,4 +42,4 @@ require("./controllers/orders-controller")(app)
 const cors = require('cors');
 app.use(cors({credentials: true, origin: CLIENT_URL}));
 
-app.listen(4000);// listen at port 4000
+app.listen(process.env.PORT || 4000);// listen at port 4000
