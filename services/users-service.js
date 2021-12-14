@@ -47,9 +47,9 @@ const createUserByRole = (newUser) => {
 }
 
 const userNameCheckingRegister = (newUser) => {
-    return userDAO.findUserByUserName(newUser.name)
+    return userDAO.findUserByUserName(newUser.username)
         .then((existingUser) => {
-            if (existingUser && existingUser.name === newUser.name) {
+            if (existingUser && existingUser.username === newUser.username) {
 
             } else {
                 return createUserByRole(newUser)
