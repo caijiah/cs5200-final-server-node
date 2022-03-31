@@ -11,7 +11,8 @@ const session = require('express-session')
 const SECRET = 'keyboard cat'
 let sess = {
     secret: SECRET,
-    proxy: false,
+    saveUninitialized: true,
+    resave: true,
     cookie: {
         secure: false,
         sameSite: "strict"
