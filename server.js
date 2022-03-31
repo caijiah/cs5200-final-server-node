@@ -8,11 +8,25 @@ mongoose.connect(MONGODB_URI,
                  {useNewUrlParser: true, useUnifiedTopology: true});
 
 const session = require('express-session')
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-}))
+const SECRET = 'keyboard cat'
+let sess = {
+    secret: SECRET,
+    proxy: false,
+    cookie: {
+        secure: false,
+        sameSite: "strict"
+    }
+}
+
+if (process.env.ENV === 'PRODUCTION') {
+    app.set('trust proxy', 1) // trust first proxy
+    app.enable("trust proxy");
+    sess.proxy = true
+    sess.cookie.secure = true // serve secure cookies
+    sess.cookie.sameSite = "none";
+}
+
+app.use(session(sess));
 
 const CLIENT_URL = process.env.CLIENT_URL
 app.use(function (req,res, next) {
